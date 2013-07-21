@@ -8,7 +8,7 @@ from tweepy.utils import parse_datetime
 
 class ProfileListener(StreamListener):
     def __init__(self, api):
-        super(FriendProfileListener, self).__init__(api)
+        super(ProfileListener, self).__init__(api)
         self.friends = []
         self.my_id = self.api.verify_credentials().id
         # print 'my_id: {0}'.format(self.my_id)
@@ -125,5 +125,5 @@ if __name__ == '__main__':
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth_handler=auth)
-    stream = Stream(auth, FriendProfileListener(api), secure=True)
+    stream = Stream(auth, ProfileListener(api), secure=True)
     stream.userstream()
